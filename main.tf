@@ -15,7 +15,7 @@ provider "spotify" {
 }
 
 data "spotify_search_track" "by_artist" {
-  artist = "Dolly Parton"
+  artist = "A.R.Rahman"
   #  album = "Jolene"
   #  name  = "Early Morning Breeze"
 }
@@ -29,5 +29,58 @@ resource "spotify_playlist" "playlist" {
     data.spotify_search_track.by_artist.tracks[0].id,
     data.spotify_search_track.by_artist.tracks[1].id,
     data.spotify_search_track.by_artist.tracks[2].id,
+  ]
+}
+
+data "spotify_search_track" "devara1" {
+  artist = "Anirudh Ravichander"
+    album = "Devara Part1"
+  #  name  = "Early Morning Breeze"
+}
+
+resource "spotify_playlist" "devara" {
+  name        = "Devara"
+  description = "This playlist was created by Terraform for Devara"
+  public      = true
+
+  tracks = [
+    data.spotify_search_track.devara1.tracks[0].id,
+    data.spotify_search_track.devara1.tracks[1].id,
+    data.spotify_search_track.devara1.tracks[2].id,
+  ]
+}
+
+data "spotify_search_track" "cs" {
+  artist = "Chain Smokers"
+    album = "chain smoker"
+  #  name  = "Early Morning Breeze"
+}
+
+resource "spotify_playlist" "cs" {
+  name        = "CS"
+  description = "This playlist was created by Terraform for CS"
+  public      = true
+
+  tracks = [
+    data.spotify_search_track.cs.tracks[0].id,
+    data.spotify_search_track.cs.tracks[1].id,
+    data.spotify_search_track.cs.tracks[2].id,
+  ]
+}
+
+data "spotify_search_track" "mani_sharma" {
+  artist = "Mani Sharma"
+    album = "Mani Sharma Hits"
+  #  name  = "Early Morning Breeze"
+}
+
+resource "spotify_playlist" "mani_sharma" {
+  name        = "Mani Sharma"
+  description = "This playlist was created by Terraform for Mani Sharma Hits"
+  public      = true
+
+  tracks = [
+    data.spotify_search_track.mani_sharma.tracks[0].id,
+    data.spotify_search_track.mani_sharma.tracks[1].id,
   ]
 }
